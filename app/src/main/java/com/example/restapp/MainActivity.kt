@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupViewPager2()
-//        binding.viewPager2.adapter = greetingViewPagerAdapter
-//        greetingViewPagerAdapter.setItems(listOf())
-//        binding.dotIndicator.setViewPager2(binding.viewPager2)
+        next()
+
     }
 
     private fun setupViewPager2() {
@@ -48,5 +47,13 @@ class MainActivity : AppCompatActivity() {
         description.add("")
 
         binding.viewPager2.adapter = GreetingViewPagerAdapter(this, image, text, description)
+        binding.dotIndicator.setViewPager2(binding.viewPager2)
+    }
+
+    private fun next() {
+        binding.greetingNext.setOnClickListener {
+            setupViewPager2()
+            binding.dotIndicator.setViewPager2(binding.viewPager2)
+        }
     }
 }
