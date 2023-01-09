@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RestApp</string>
+    <string name="greeting_next">Далее</string>
+    <string name="text_name1">Абсолютно бесплатно!</string>
+    <string name="text_name2">Экономьте вместе с Resttab!</string>
+    <string name="text_name3">Более 400 ресторанов в одном прложении!</string>
+    <string name="text_description1">Используйте все возможности Resttab абсолютно бесплатно! </string>
+    <string name="text_description2">Бронируйте столик в ресторанах с выгодными предложениями от наших партнеров</string>
+    <string name="text_description3"> </string>
 </resources>
