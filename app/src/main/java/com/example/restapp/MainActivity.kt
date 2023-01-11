@@ -1,5 +1,7 @@
 package com.example.restapp
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +11,8 @@ import android.view.WindowManager
 import com.example.restapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    //    private var titleList = mutableListOf<String>()
+    //
+//        private var titleList = mutableListOf<String>()
 //    private var image = Int
 //    private var imageList = mutableListOf<Int>()
 //    private var descriptionList = mutableListOf<String>()
@@ -26,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         setupViewPager2()
         next()
+
 
     }
 
@@ -52,8 +55,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun next() {
         binding.greetingNext.setOnClickListener {
-            setupViewPager2()
-            binding.dotIndicator.setViewPager2(binding.viewPager2)
+            val myPosition = binding.viewPager2.currentItem
+            when (myPosition) {
+                0 -> binding.viewPager2.currentItem = 1
+                1 -> binding.viewPager2.currentItem = 2
+                2 -> binding.viewPager2.currentItem
+            }
+            if (myPosition == 2) {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+            } else
+                binding.viewPager2.currentItem
         }
     }
+
 }

@@ -17,7 +17,7 @@ class GreetingViewPagerAdapter(
 
     inner class ViewPagerHolder(private var greetingItemBinding: GreetingItemViewBinding) :
         RecyclerView.ViewHolder(greetingItemBinding.root) {
-        @SuppressLint("ResourceType")
+
         fun bind(text: String, description: String, image: Int) {
             greetingItemBinding.ivGreetingText.text = text
             greetingItemBinding.ivGreetingTextDescription.text = description
