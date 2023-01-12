@@ -9,31 +9,36 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import com.example.restapp.databinding.ActivityMainBinding
+import com.google.gson.Gson
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
-    //
-//        private var titleList = mutableListOf<String>()
-//    private var image = Int
-//    private var imageList = mutableListOf<Int>()
-//    private var descriptionList = mutableListOf<String>()
+
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    //    private val greetingViewPagerAdapter by lazy { GreetingViewPagerAdapter(this, image, ) }
+    override fun onStart() {
+        super.onStart()
+        if (RestApp.INSTANCE.prefs.getIsClicked) {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         setupViewPager2()
-        next()
+        binding.greetingNext.setOnClickListener {
+            onNextClick()
 
 
+        }
     }
 
     private fun setupViewPager2() {
-
         val image: MutableList<Int> = ArrayList()
         image.add(R.drawable.greeting1)
         image.add(R.drawable.greeting2)
@@ -53,19 +58,28 @@ class MainActivity : AppCompatActivity() {
         binding.dotIndicator.setViewPager2(binding.viewPager2)
     }
 
-    private fun next() {
-        binding.greetingNext.setOnClickListener {
-            val myPosition = binding.viewPager2.currentItem
-            when (myPosition) {
-                0 -> binding.viewPager2.currentItem = 1
-                1 -> binding.viewPager2.currentItem = 2
-                2 -> binding.viewPager2.currentItem
-            }
-            if (myPosition == 2) {
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-            } else
-                binding.viewPager2.currentItem
+//    private fun next() {
+//        binding.greetingNext.setOnClickListener {
+//            val myPosition = binding.viewPager2.currentItem
+//            when (myPosition) {
+//                0 -> binding.viewPager2.currentItem = 1
+//                1 -> binding.viewPager2.currentItem = 2
+//                2 -> binding.viewPager2.currentItem
+//            }
+//            if (myPosition == 2) {
+//                val intent = Intent(this, HomeActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }
+//    }
+
+    private fun onNextClick() {
+        RestApp.INSTANCE.prefs.saveIsNextClicked(true)
+        if (binding.viewPager2.currentItem == 2) {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        } else {
+            binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
         }
     }
 
