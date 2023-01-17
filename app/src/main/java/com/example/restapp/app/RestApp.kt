@@ -1,6 +1,7 @@
-package com.example.restapp
+package com.example.restapp.app
 
 import android.app.Application
+import com.example.restapp.Prefs
 
 class RestApp : Application() {
 

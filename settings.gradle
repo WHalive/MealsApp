@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
+        // add the following
+
     }
 }
 rootProject.name = "RestApp"

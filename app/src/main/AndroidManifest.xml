@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".RestApp"
+        android:name=".app.RestApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,18 +14,16 @@
         tools:ignore="ExtraText"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
+            android:name=".auth.AuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RestApp.FullScreen" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-
-
-        </activity>
+            android:theme="@style/Theme.RestApp.FullScreen" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".welcome.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

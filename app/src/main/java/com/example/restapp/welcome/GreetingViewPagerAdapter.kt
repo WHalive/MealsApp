@@ -1,6 +1,5 @@
-package com.example.restapp
+package com.example.restapp.welcome
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup

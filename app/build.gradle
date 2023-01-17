@@ -46,5 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.tbuonomo:dotsindicator:4.2'
     implementation 'com.google.code.gson:gson:2.8.5'
+   implementation  "ru.tinkoff.decoro:decoro:1.5.1"
+    implementation  "io.github.vicmikhailau:MaskedEditText:4.0.5"
 
 }

@@ -1,28 +1,18 @@
 package com.example.restapp
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
+import com.example.restapp.auth.AuthActivity
+import com.example.restapp.app.RestApp
 import com.example.restapp.databinding.ActivityMainBinding
-import com.google.gson.Gson
-import org.w3c.dom.Text
+import com.example.restapp.welcome.GreetingViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    override fun onStart() {
-        super.onStart()
-        if (RestApp.INSTANCE.prefs.getIsClicked) {
-            startActivity(Intent(this, HomeActivity::class.java))
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +28,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (RestApp.INSTANCE.prefs.getIsClicked) {
+            startActivity(Intent(this, AuthActivity::class.java))
+            finish()
+        }
+
+    }
+
     private fun setupViewPager2() {
         val image: MutableList<Int> = ArrayList()
         image.add(R.drawable.greeting1)
@@ -45,14 +44,14 @@ class MainActivity : AppCompatActivity() {
         image.add(R.drawable.greeting3)
 
         val text: MutableList<String> = ArrayList()
-        text.add("Абсолютно бесплатно!")
-        text.add("Экономьте вместе с Resttab!")
-        text.add("Более 400 ресторанов в одном приложении!")
+        text.add("It is free!")
+        text.add("Enjoy  with Resttab!")
+        text.add("Best meals all over the world!")
 
         val description: MutableList<String> = ArrayList()
-        description.add("Используйте все возможности Resttab абсолютно бесплатно!")
-        description.add("Бронируйте столик в ресторанах с выгодными предложениями от наших партнеров")
-        description.add("")
+        description.add("Best meals all over the world!")
+        description.add("See and prepare, repeat and be one of us")
+        description.add("Welcome")
 
         binding.viewPager2.adapter = GreetingViewPagerAdapter(this, image, text, description)
         binding.dotIndicator.setViewPager2(binding.viewPager2)
@@ -76,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     private fun onNextClick() {
         RestApp.INSTANCE.prefs.saveIsNextClicked(true)
         if (binding.viewPager2.currentItem == 2) {
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
         } else {
             binding.viewPager2.currentItem = binding.viewPager2.currentItem + 1
