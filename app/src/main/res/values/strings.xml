@@ -14,4 +14,5 @@
     <string name="enter_button">Войти</string>
     <string name="not_received_code">Did not receive the code?</string>
     <string name="send_again">Send again</string>
+    <string name="send_message">Send message</string>
 </resources>

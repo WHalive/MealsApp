@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.restapp.databinding.FragmentSignInBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.ktx.Firebase
 import ru.tinkoff.decoro.Mask
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
@@ -14,32 +19,8 @@ import ru.tinkoff.decoro.slots.PredefinedSlots
 import ru.tinkoff.decoro.slots.Slot
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
+import java.util.concurrent.TimeUnit
 
-
-class SignInFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = SignInFragment()
-    }
-
-    private lateinit var binding: FragmentSignInBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSignInBinding.inflate(inflater, container, false)
-
-        val mask = MaskImpl.createTerminated(UZ_PHONE_NUMBER.toTypedArray())
-        mask.isShowingEmptySlots = true
-        mask.placeholder = '#'
-        val watcher = MaskFormatWatcher(mask)
-        watcher.installOn(binding.phoneNumberEditText)
-
-        return binding.root
-    }
-
-}
 
 private val UZ_PHONE_NUMBER = listOf(
     PredefinedSlots.hardcodedSlot('+'),
