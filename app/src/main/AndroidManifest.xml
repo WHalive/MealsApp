@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".app.RestApp"
@@ -15,6 +16,10 @@
         android:theme="@style/Theme.RestApp"
         tools:ignore="ExtraText"
         tools:targetApi="31">
+        <activity
+            android:name=".auth.SignInActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RestApp.FullScreen"/>
         <activity
             android:name=".HomeActivity"
             android:exported="false" />

@@ -23,24 +23,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_image" />
 
-    <TextView
-        android:id="@+id/login_text"
-        style="@style/TextAppearance.AppCompat.Body2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/Enter"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_image_logo" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phone_layout"
+        android:id="@+id/code_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,33 +36,56 @@
         app:counterTextColor="@color/gray_400"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_text"
+        app:layout_constraintTop_toBottomOf="@id/login_image_logo"
         app:prefixTextColor="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneNumberEditText"
+            android:id="@+id/codeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:maxLines="1"
-            android:text="+998"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sendCode"
+        android:id="@+id/receiveCode"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/send_message"
+        android:text="@string/receive_code"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_layout">
+        app:layout_constraintTop_toBottomOf="@id/code_layout">
 
     </com.google.android.material.button.MaterialButton>
+
+    <TextView
+        android:id="@+id/not_received_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/not_received_code"
+        android:textColor="@color/gray_500"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/receiveCode" />
+
+    <TextView
+        android:id="@+id/sendAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/send_again"
+        android:textColor="@color/blue_500"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/receiveCode" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,9 +3,14 @@ package com.example.restapp.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
+import com.example.restapp.HomeActivity
 import com.example.restapp.R
 import com.example.restapp.databinding.ActivityAuthBinding
 import com.google.firebase.FirebaseException
@@ -21,22 +26,18 @@ class AuthActivity : AppCompatActivity() {
 
     private var _binding: ActivityAuthBinding? = null
     private val binding get() = _binding!!
-    private var forceResendingToken: PhoneAuthProvider.ForceResendingToken? = null
-
-    //    private var mCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks? = null
-    private lateinit var verificationCode: String
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var phoneNumber: String
-    private lateinit var progressBar: ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
         binding.sendCode.setOnClickListener {
             sendNumber()
         }
-        firebaseAuth = FirebaseAuth.getInstance()
 
         val mask = MaskImpl.createTerminated(UZ_PHONE_NUMBER.toTypedArray())
         mask.isShowingEmptySlots = true
@@ -49,18 +50,16 @@ class AuthActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (firebaseAuth.currentUser != null) {
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 
     private fun sendNumber() {
-        phoneNumber = binding.phoneNumberEditText.text.toString()
+        phoneNumber = binding.phoneNumberEditText.text?.trim().toString()
         if (phoneNumber.isNotEmpty()) {
-            if (phoneNumber.length == 9) {
-                phoneNumber = "+998$phoneNumber"
-
-                progressBar.visibility = View.VISIBLE
-
+            if (phoneNumber.length == 17) {
+                phoneNumber = phoneNumber
                 val options = PhoneAuthOptions.newBuilder(firebaseAuth)
                     .setPhoneNumber(phoneNumber)       // Phone number to verify
                     .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -68,7 +67,14 @@ class AuthActivity : AppCompatActivity() {
                     .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
                     .build()
                 PhoneAuthProvider.verifyPhoneNumber(options)
+                Log.d("ASD", "Auth started")
+
+            } else {
+                Toast.makeText(this, "Please Enter correct number", Toast.LENGTH_SHORT).show()
+                Log.d("ASD", "sendNumber: $phoneNumber")
             }
+        } else {
+            Toast.makeText(this, "Please Enter number", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -77,40 +83,52 @@ class AuthActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
 
+                    Toast.makeText(this, "Authenticate successfully", Toast.LENGTH_SHORT).show()
+                    sendToHome()
+
                 } else {
 
+                    Log.d("TAG", "signInWithPhoneAuthCredential:${task.exception.toString()} ")
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
 
                     }
-
                 }
             }
+    }
+
+    private fun sendToHome() {
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+
             signInWithPhoneAuthCredential(credential)
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
 
             if (e is FirebaseAuthInvalidCredentialsException) {
-
                 Log.d("TAG", "onVerificationFailed: ${e.toString()}")
+
             } else if (e is FirebaseTooManyRequestsException) {
                 Log.d("TAG", "onVerificationFailed: ${e.toString()}")
             }
-
         }
 
         override fun onCodeSent(
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken
         ) {
-            progressBar.visibility = View.INVISIBLE
-//            storedVerificationId = verificationId
-//            resendToken = token
+
+            val intent = Intent(this@AuthActivity, SignInActivity::class.java)
+            intent.putExtra("verificationId", verificationId)
+            intent.putExtra("resendToken", token)
+            intent.putExtra("phoneNumber", phoneNumber)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
         }
     }
 }
