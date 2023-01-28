@@ -15,4 +15,9 @@
     <string name="not_received_code">Did not receive the code?</string>
     <string name="send_again">Send again</string>
     <string name="send_message">Send message</string>
+    <string name="home">Home</string>
+    <string name="favourite">Favourite</string>
+    <string name="search">Search</string>
+    <string name="list">List</string>
+    <string name="info">Info</string>
 </resources>
