@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.restapp.databinding.ActivityHomeBinding
+import com.example.restapp.home.HomeFragment
 
 class HomeActivity : AppCompatActivity() {
     private var _binding: ActivityHomeBinding? = null
@@ -13,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
         _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val homeFragment = HomeFragment()
+        val homeFragment = HomeFragment.newInstance()
         val favouriteFragment = FavouriteFragment()
         val searchFragment = SearchFragment()
         val listFragment = ListFragment()
