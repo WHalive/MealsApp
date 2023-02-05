@@ -1,26 +1,28 @@
 package com.example.restapp.home
 
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
-import androidx.recyclerview.widget.RecyclerView
-import com.example.restapp.MainActivity
 import com.example.restapp.databinding.FragmentHomeBinding
-import kotlinx.coroutines.*
 
 
-class HomeFragment : Fragment() {
+
+class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
-    private val imageAdapter by lazy { MealsImageAdapter() }
+    private val imageAdapter by lazy { MealsImageAdapter(this) }
+
+//    val api_key =  "AIzaSyCLNsFm2XHl_jJ5mZDwySEM-gyMl36XAcQ"
+//    it is for youtube videos
 
     companion object {
         fun newInstance() = HomeFragment()
@@ -35,7 +37,13 @@ class HomeFragment : Fragment() {
         binding.homeRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.homeRecyclerView.adapter = imageAdapter
+
         return binding.root
+    }
+
+    override fun onItemClick(position: Int) {
+        MealsDialogFragment().show(childFragmentManager, "dialog")
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,43 +51,57 @@ class HomeFragment : Fragment() {
 
         viewModel.meals.observe(viewLifecycleOwner) { meals ->
             imageAdapter.setMeals(meals)
-            autoScroll()
+//            autoScroll()
 //            Log.d("TAG", "onViewCreated: $meals")
 
         }
     }
 
-    private fun autoScroll() {
-        val speedScroll = 10
-        val handler = Handler()
-        val runnable: java.lang.Runnable = object : java.lang.Runnable {
-            var count = 0
-            override fun run() {
-                if (count == imageAdapter.itemCount) count = 0
-                if (count < imageAdapter.itemCount) {
-                    binding.homeRecyclerView.smoothScrollToPosition(++count)
-                    handler.postDelayed(this, speedScroll.toLong())
-                }
-            }
-        }
-        handler.postDelayed(runnable, speedScroll.toLong())
-    }
+//    private fun autoScroll() {
+//        val speedScroll = 10
+//        val handler = Handler()
+//        val runnable: java.lang.Runnable = object : java.lang.Runnable {
+//            var count = 0
+//            override fun run() {
+//                if (count == imageAdapter.itemCount) count = 0
+//                if (count < imageAdapter.itemCount) {
+//                    binding.homeRecyclerView.smoothScrollToPosition(++count)
+//                    handler.postDelayed(this, speedScroll.toLong())
+//                }
+//            }
+//        }
+//        handler.postDelayed(runnable, speedScroll.toLong())
+//    }
 
 }
 
+
+//binding.youtubePlayerView.initialize(api_key, object : YouTubePlayer.OnInitializedListener{
+//            override fun onInitializationSuccess(
+//                provider: YouTubePlayer.Provider?,
+//                player: YouTubePlayer?,
+//                p2: Boolean
+//            ) {
+//                player?.loadVideo("VVnZd8A84z4")
+//                player?.play()
+//            }
+//            override fun onInitializationFailure(
+//                p0: YouTubePlayer.Provider?,
+//                p1: YouTubeInitializationResult?
+//            ) {
+//                Toast.makeText(this@HomeFragment.context , "Video player Failed" , Toast.LENGTH_SHORT).show()
+//            }
+//        })
+
+
 //    private val imageAdapter by lazy { HomeViewPagerAdapter() }
-
 //        binding.homeViewPager.adapter = imageAdapter
-
 //        val totalPages = 25
-//
 //        val pagerPadding = 10
 //        binding.homeViewPager.clipToPadding = false
 //        binding.homeViewPager.setPadding(pagerPadding, 0, pagerPadding, 0)
-//
 //        viewModel.meals.observe(viewLifecycleOwner) { meals ->
 //            imageAdapter.setMealsImage(meals)
-//
 //        }
 //        CoroutineScope(Dispatchers.Main).launch {
 //            while (isActive) {

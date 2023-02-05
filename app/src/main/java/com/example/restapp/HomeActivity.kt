@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.restapp.databinding.ActivityHomeBinding
 import com.example.restapp.home.HomeFragment
+import com.example.restapp.list.ListFragment
 
 class HomeActivity : AppCompatActivity() {
     private var _binding: ActivityHomeBinding? = null
