@@ -60,7 +60,7 @@ class ListFragment : Fragment() {
         } else {
             binding.listRecyclerView.layoutManager = GridLayoutManager(context, 4)
         }
-//       binding.listRecyclerView.adapter = ListRecyclerViewAdapter()
+       binding.listRecyclerView.adapter = ListRecyclerViewAdapter()
     }
 
     private fun setIcon(menuItem: MenuItem?) {

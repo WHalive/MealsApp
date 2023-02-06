@@ -10,16 +10,16 @@
         android:id="@+id/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/toolbar_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:scaleType="fitStart"
             android:layout_marginTop="10dp"
+            android:scaleType="fitStart"
             android:src="@drawable/icon_resttab_logo" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -28,9 +28,9 @@
         android:id="@+id/home_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/toolbar_main" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar_main" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--    <com.google.android.youtube.player.YouTubePlayerView-->
