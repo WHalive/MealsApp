@@ -1,24 +1,20 @@
 package com.example.restapp.home
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restapp.databinding.FragmentHomeBinding
-
+import com.example.restapp.viewModel.ViewModel
 
 
 class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
 
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: ViewModel by viewModels()
     private val imageAdapter by lazy { MealsImageAdapter(this) }
 
 //    val api_key =  "AIzaSyCLNsFm2XHl_jJ5mZDwySEM-gyMl36XAcQ"

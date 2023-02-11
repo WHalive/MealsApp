@@ -1,21 +1,26 @@
-package com.example.restapp.home
+package com.example.restapp.viewModel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.restapp.data.Meals
 import com.example.restapp.data.MealsItem
 import com.example.restapp.internet.MealsApi
+import com.example.restapp.list.ListFragment
+import com.example.restapp.word.WordFragment
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class ViewModel : ViewModel() {
 
     private val _meals = MutableLiveData<List<MealsItem>>()
     val meals: LiveData<List<MealsItem>> = _meals
 
-    init{
+    private val _mealsName = MutableLiveData<List<MealsItem>>()
+    val mealsName: LiveData<List<MealsItem>> = _mealsName
+
+    init {
         getAllMeals()
     }
 
@@ -23,7 +28,16 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _meals.value = MealsApi.retrofitService.getMeals().meals
-//                Log.d("HomeViewModel", "${_meals.value}")
+            } catch (e: Exception) {
+                Log.e("HomeViewModel", e.message.orEmpty())
+            }
+        }
+    }
+
+    fun mealsNameByLetter(letter: String) {
+        viewModelScope.launch {
+            try {
+                _mealsName.value = MealsApi.retrofitService.getMealsByLetter(letter).meals
             } catch (e: Exception) {
                 Log.e("HomeViewModel", e.message.orEmpty())
             }

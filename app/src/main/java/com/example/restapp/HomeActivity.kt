@@ -3,11 +3,13 @@ package com.example.restapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.restapp.databinding.ActivityHomeBinding
 import com.example.restapp.home.HomeFragment
+import com.example.restapp.word.WordFragment
 import com.example.restapp.list.ListFragment
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), Communicator {
     private var _binding: ActivityHomeBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +40,28 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)
         transaction.commit()
     }
+
+    override fun passDataCom(buttonText: String) {
+        val bundle = Bundle()
+        bundle.putString("button_text", buttonText)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val wordFragment = WordFragment()
+       wordFragment.arguments = bundle
+
+        transaction.replace(R.id.fragment_container, wordFragment)
+        transaction.addToBackStack(null)
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction.commit()
+    }
+}
+
+interface Communicator {
+    fun passDataCom(buttonText: String)
 }

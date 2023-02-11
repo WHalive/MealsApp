@@ -6,17 +6,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.restapp.HomeActivity
 import com.example.restapp.R
-import com.example.restapp.databinding.ListItemViewBinding
 
-class ListRecyclerViewAdapter : RecyclerView.Adapter<ListRecyclerViewAdapter.LetterViewHolder>() {
+class ListRecyclerViewAdapter(
+    private val listener: RecyclerViewEvent
+) :
+    RecyclerView.Adapter<ListRecyclerViewAdapter.LetterViewHolder>() {
 
     private val list = ('A').rangeTo('Z').toList()
 
-    inner class LetterViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) {
+    interface RecyclerViewEvent {
+        fun onItemClick(position: Int)
+    }
 
+    inner class LetterViewHolder(view: View) :
+        RecyclerView.ViewHolder(view), View.OnClickListener {
+        val button = view.findViewById<Button>(R.id.button_list_item)
+
+        init {
+            button.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LetterViewHolder {
@@ -29,6 +48,6 @@ class ListRecyclerViewAdapter : RecyclerView.Adapter<ListRecyclerViewAdapter.Let
 
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val letters = list[position]
-        holder.itemView.findViewById<Button>(R.id.button_item).text = letters.toString()
+        holder.itemView.findViewById<Button>(R.id.button_list_item).text = letters.toString()
     }
 }

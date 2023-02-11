@@ -1,20 +1,26 @@
 package com.example.restapp.list
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.restapp.Communicator
 import com.example.restapp.HomeActivity
 import com.example.restapp.R
 import com.example.restapp.databinding.FragmentListBinding
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), ListRecyclerViewAdapter.RecyclerViewEvent {
 
+    private lateinit var communicator: Communicator
     private lateinit var binding: FragmentListBinding
     private var isLinearLayoutManager = true
+    private val listAdapter by lazy { ListRecyclerViewAdapter(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -26,14 +32,16 @@ class ListFragment : Fragment() {
     ): View? {
 
         binding = FragmentListBinding.inflate(inflater, container, false)
-
         (activity as HomeActivity).setSupportActionBar(binding.toolbarMain)
+        communicator = activity as Communicator
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         chooseLayout()
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.app_bar_menu, menu)
 
@@ -43,7 +51,7 @@ class ListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id. toolbar_view-> {
+            R.id.toolbar_view -> {
                 isLinearLayoutManager = !isLinearLayoutManager
                 chooseLayout()
                 setIcon(item)
@@ -60,7 +68,7 @@ class ListFragment : Fragment() {
         } else {
             binding.listRecyclerView.layoutManager = GridLayoutManager(context, 4)
         }
-       binding.listRecyclerView.adapter = ListRecyclerViewAdapter()
+        binding.listRecyclerView.adapter = listAdapter
     }
 
     private fun setIcon(menuItem: MenuItem?) {
@@ -72,5 +80,10 @@ class ListFragment : Fragment() {
                 ContextCompat.getDrawable(this.requireContext(), R.drawable.view_grid)
             else ContextCompat.getDrawable(this.requireContext(), R.drawable.view_list)
 
+    }
+
+    @SuppressLint("ResourceType")
+    override fun onItemClick(position: Int) {
+        communicator.passDataCom( ('A').rangeTo('Z').toList()[position].toString())
     }
 }
