@@ -9,18 +9,16 @@ import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.restapp.Communicator
 import com.example.restapp.HomeActivity
 import com.example.restapp.R
 import com.example.restapp.databinding.FragmentListBinding
 
 
-class ListFragment : Fragment(), ListRecyclerViewAdapter.RecyclerViewEvent {
+class ListFragment : Fragment() {
 
-    private lateinit var communicator: Communicator
     private lateinit var binding: FragmentListBinding
     private var isLinearLayoutManager = true
-    private val listAdapter by lazy { ListRecyclerViewAdapter(this) }
+    private val listAdapter by lazy { ListRecyclerViewAdapter() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -33,7 +31,6 @@ class ListFragment : Fragment(), ListRecyclerViewAdapter.RecyclerViewEvent {
 
         binding = FragmentListBinding.inflate(inflater, container, false)
         (activity as HomeActivity).setSupportActionBar(binding.toolbarMain)
-        communicator = activity as Communicator
 
         return binding.root
     }
@@ -81,9 +78,5 @@ class ListFragment : Fragment(), ListRecyclerViewAdapter.RecyclerViewEvent {
             else ContextCompat.getDrawable(this.requireContext(), R.drawable.view_list)
 
     }
-
-    @SuppressLint("ResourceType")
-    override fun onItemClick(position: Int) {
-        communicator.passDataCom( ('A').rangeTo('Z').toList()[position].toString())
-    }
+//        communicator.passDataCom( ('A').rangeTo('Z').toList()[position].toString())
 }

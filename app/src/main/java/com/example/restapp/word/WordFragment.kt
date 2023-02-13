@@ -6,15 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.core.view.get
+
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.restapp.R
+import com.example.restapp.data.Meals
 import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.FragmentWordBinding
+import com.example.restapp.list.ListRecyclerViewAdapter
+import com.example.restapp.meals.MealsFragment
 import com.example.restapp.viewModel.ViewModel
+import kotlin.concurrent.fixedRateTimer
 
 class WordFragment : Fragment() {
 

@@ -12,4 +12,3 @@ data class MealsItem(
     @SerializedName("strTags") val type: String,
     @SerializedName("strYoutube") val video: String
     )
-
