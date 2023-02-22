@@ -15,8 +15,7 @@ import com.example.restapp.R
 import com.example.restapp.meals.MealsFragment
 import com.example.restapp.word.WordFragment
 
-class ListRecyclerViewAdapter(
-) :
+class ListRecyclerViewAdapter :
     RecyclerView.Adapter<ListRecyclerViewAdapter.LetterViewHolder>() {
 
     private val list = ('A').rangeTo('Z').toList()
@@ -33,9 +32,10 @@ class ListRecyclerViewAdapter(
                 bundle.putString("button_text", button.text.toString())
 
                 val wordFragment = WordFragment()
-               wordFragment.arguments = bundle
+                wordFragment.arguments = bundle
                 activity.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container,wordFragment)
+                    .replace(R.id.fragment_container, wordFragment)
+                    .addToBackStack("")
                     .commit()
             }
         }

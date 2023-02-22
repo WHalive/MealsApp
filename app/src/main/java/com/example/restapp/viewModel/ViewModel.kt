@@ -28,8 +28,9 @@ class ViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _meals.value = MealsApi.retrofitService.getMeals().meals
+
             } catch (e: Exception) {
-                Log.e("HomeViewModel", e.message.orEmpty())
+                Log.e("ViewModel", e.message.orEmpty())
             }
         }
     }
@@ -38,9 +39,11 @@ class ViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _mealsName.value = MealsApi.retrofitService.getMealsByLetter(letter).meals
+
             } catch (e: Exception) {
-                Log.e("HomeViewModel", e.message.orEmpty())
+                Log.e("ViewModel", e.message.orEmpty())
             }
         }
     }
 }
+
