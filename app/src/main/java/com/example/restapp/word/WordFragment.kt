@@ -25,6 +25,10 @@ class WordFragment : Fragment() {
     private lateinit var letter: String
     private val wordAdapter by lazy { WordRecyclerViewAdapter() }
 
+    companion object {
+        fun newInstance() = WordFragment()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

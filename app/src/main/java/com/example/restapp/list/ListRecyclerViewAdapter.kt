@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restapp.HomeActivity
 import com.example.restapp.R
+import com.example.restapp.data.MealsItem
 import com.example.restapp.meals.MealsFragment
 import com.example.restapp.word.WordFragment
 
@@ -27,13 +28,14 @@ class ListRecyclerViewAdapter :
 
         init {
             button.setOnClickListener { v ->
-                val activity = v!!.context as AppCompatActivity
+                val activity = v!!.context
                 val bundle = Bundle()
                 bundle.putString("button_text", button.text.toString())
 
-                val wordFragment = WordFragment()
+                val wordFragment = WordFragment.newInstance()
                 wordFragment.arguments = bundle
-                activity.supportFragmentManager.beginTransaction()
+                (activity as HomeActivity).supportFragmentManager
+                    .beginTransaction()
                     .replace(R.id.fragment_container, wordFragment)
                     .addToBackStack("")
                     .commit()

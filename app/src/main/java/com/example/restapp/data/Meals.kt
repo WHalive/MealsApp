@@ -34,6 +34,9 @@ data class MealsItem(
     @SerializedName("strIngredient16") val ing16: String = "",
     @SerializedName("strIngredient17") val ing17: String = "",
     @SerializedName("strIngredient18") val ing18: String = "",
+    @SerializedName("strIngredient19") val ing19: String = "",
+    @SerializedName("strIngredient20") val ing20: String = "",
+    @SerializedName("strMeasure1") val m1: String = "",
     @SerializedName("strMeasure2") val m2: String = "",
     @SerializedName("strMeasure3") val m3: String = "",
     @SerializedName("strMeasure4") val m4: String = "",
@@ -51,5 +54,6 @@ data class MealsItem(
     @SerializedName("strMeasure16") val m16: String = "",
     @SerializedName("strMeasure17") val m17: String = "",
     @SerializedName("strMeasure18") val m18: String = "",
-    @SerializedName("strMeasure1") val m1: String = ""
+    @SerializedName("strMeasure19") val m19: String = "",
+    @SerializedName("strMeasure20") val m20: String = ""
 ): Parcelable

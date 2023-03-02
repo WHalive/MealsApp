@@ -33,11 +33,12 @@ class MealsFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mealsName.text = mealsItem.name
         binding.mealsInstructionText.text = mealsItem.instruction
+        binding.mealsAreaName.text = mealsItem.area
+        binding.mealsCategoryName.text = mealsItem.type
 
         binding.ing1.text = mealsItem.ing1
         binding.m1.text = mealsItem.m1
@@ -93,6 +94,11 @@ class MealsFragment : Fragment() {
         binding.ing18.text = mealsItem.ing18
         binding.m18.text = mealsItem.m18
 
+        binding.ing19.text = mealsItem.ing19
+        binding.m19.text = mealsItem.m19
+
+        binding.ing20.text = mealsItem.ing20
+        binding.m20.text = mealsItem.m20
 
     }
 

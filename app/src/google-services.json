@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "794815268352-cvfkphk968p3s6ecfn1do8uv4nsfhlrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.restapp",
+            "certificate_hash": "45fdaa5f319695085436548479724ccb10952381"
+          }
+        },
+        {
           "client_id": "794815268352-eop36m64btqam6t0qia990cs4fa0g5lu.apps.googleusercontent.com",
           "client_type": 3
         }
