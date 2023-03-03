@@ -20,7 +20,7 @@
             <ImageView
                 android:id="@+id/meals_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/greeting2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,20 +55,20 @@
 
             <TextView
                 android:id="@+id/meals_area"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/area"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toStartOf="@id/meals_area_name"
-                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintHorizontal_bias="0.532"
                 app:layout_constraintStart_toEndOf="@id/meals_area_image"
                 app:layout_constraintTop_toBottomOf="@+id/meals_image"
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/meals_area_name"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_marginEnd="8dp"
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/meals_category"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginTop="216dp"
@@ -104,10 +104,10 @@
 
             <TextView
                 android:id="@+id/meals_category_name"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/asian"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/meals_area_name" />
@@ -141,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/ingredient"
+                android:text="@string/ingredients"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -187,8 +187,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c1"
                 app:layout_constraintTop_toBottomOf="@id/meals_ingredient">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -258,8 +258,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c3"
                 app:layout_constraintTop_toBottomOf="@id/c2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -328,8 +328,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c5"
                 app:layout_constraintTop_toBottomOf="@id/c4">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -398,8 +398,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c7"
                 app:layout_constraintTop_toBottomOf="@id/c6">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -469,8 +469,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c9"
                 app:layout_constraintTop_toBottomOf="@id/c8">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -539,8 +539,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c11"
                 app:layout_constraintTop_toBottomOf="@id/c10">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -610,8 +610,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c13"
                 app:layout_constraintTop_toBottomOf="@id/c12">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -681,8 +681,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c15"
                 app:layout_constraintTop_toBottomOf="@id/c14">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -751,8 +751,8 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c17"
                 app:layout_constraintTop_toBottomOf="@id/c16">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -822,9 +822,9 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/c19"
                 app:layout_constraintTop_toBottomOf="@id/c18">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

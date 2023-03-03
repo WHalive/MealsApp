@@ -53,4 +53,5 @@
     <string name="_100">100</string>
     <string name="instructionText">InstructionText</string>
     <string name="ingredient">Ingredient</string>
+    <string name="ingredients">Ingredients</string>
 </resources>
