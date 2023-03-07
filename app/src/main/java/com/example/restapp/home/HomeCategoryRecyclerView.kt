@@ -51,7 +51,7 @@ class HomeCategoryRecyclerViewAdapter :
                 val categoryFragment = CategoryFragment.newInstance(category)
                 (activity as HomeActivity).supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.fragment_container, categoryFragment)
+                    .replace(R.id.homeFragmentContainer, categoryFragment)
                     .addToBackStack("")
                     .commit()
             }

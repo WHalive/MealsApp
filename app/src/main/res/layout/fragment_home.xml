@@ -42,6 +42,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/home_recycler_view" />
 
+    <FrameLayout
+        android:id="@+id/homeFragmentContainer"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/homeCategoryRecyclerView"
+        android:layout_margin="10dp"
+        android:layout_height="300dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--    <com.google.android.youtube.player.YouTubePlayerView-->
