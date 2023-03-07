@@ -1,0 +1,33 @@
+package com.example.restapp.home
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.restapp.R
+import com.example.restapp.data.CategoryItem
+
+class CategoryFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_category, container, false)
+    }
+
+    companion object {
+        fun newInstance(categoryItem: CategoryItem) =
+            CategoryFragment().apply {
+                arguments = Bundle().apply {
+
+                }
+            }
+    }
+}

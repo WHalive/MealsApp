@@ -1,9 +1,14 @@
 package com.example.restapp.home
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.blue
 import androidx.recyclerview.widget.RecyclerView
+import com.example.restapp.HomeActivity
+import com.example.restapp.R
 import com.example.restapp.data.CategoryItem
 import com.example.restapp.data.MealsCategory
 import com.example.restapp.data.MealsItem
@@ -30,7 +35,7 @@ class HomeCategoryRecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categoryItem[position]
-        
+
         holder.bind(category)
     }
 
@@ -40,6 +45,16 @@ class HomeCategoryRecyclerViewAdapter :
         fun bind(category: CategoryItem) {
             val text = category.category
             binding.homeCategoryItemText.text = text
+            binding.homeCategoryItemText.setOnClickListener { v ->
+                binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#00B1E5")))
+                val activity = v?.context
+                val categoryFragment = CategoryFragment.newInstance(category)
+                (activity as HomeActivity).supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, categoryFragment)
+                    .addToBackStack("")
+                    .commit()
+            }
         }
     }
 }
