@@ -16,6 +16,7 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: ViewModel by viewModels()
     private val imageAdapter by lazy { MealsImageAdapter(this) }
+    private val categoryAdapter by lazy { HomeCategoryRecyclerViewAdapter() }
 
 //    val api_key =  "AIzaSyCLNsFm2XHl_jJ5mZDwySEM-gyMl36XAcQ"
 //    it is for youtube videos
@@ -33,6 +34,9 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
         binding.homeRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.homeRecyclerView.adapter = imageAdapter
+        binding.homeCategoryRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.homeCategoryRecyclerView.adapter = categoryAdapter
 
         return binding.root
     }
@@ -47,6 +51,10 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
 
         viewModel.meals.observe(viewLifecycleOwner) { meals ->
             imageAdapter.setMeals(meals)
+            viewModel.mealsCategory.observe(viewLifecycleOwner) { categories ->
+                categoryAdapter.setCategory(categories)
+
+            }
 //            autoScroll()
 //            Log.d("TAG", "onViewCreated: $meals")
 

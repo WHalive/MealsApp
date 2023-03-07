@@ -3,6 +3,7 @@ package com.example.restapp.internet
 import android.util.Log
 import com.example.restapp.BuildConfig
 import com.example.restapp.data.Meals
+import com.example.restapp.data.MealsCategory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,6 +27,9 @@ interface MealsApiService {
 
     @GET("search.php")
     suspend fun getMealsByLetter(@Query("f") letter: String): Meals
+
+    @GET("list.php?c=list")
+    suspend fun getMealsCategory(): MealsCategory
 }
 
 object MealsApi {
