@@ -11,16 +11,18 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restapp.R
 import com.example.restapp.data.CategoryItem
+import com.example.restapp.data.CategoryMeals
 import com.example.restapp.data.CategoryMealsItem
 import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.FragmentCategoryBinding
+import com.example.restapp.meals.MealsFragment
 import com.example.restapp.viewModel.ViewModel
 
 class CategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoryBinding
     private val viewModel: ViewModel by viewModels()
-//    private lateinit var words: String
+    private lateinit var words : String
     private val categoryMealsAdapter by lazy { CategoryMealsRecyclerViewAdapter() }
 
     override fun onCreateView(
@@ -28,8 +30,7 @@ class CategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-//        words = arguments?.getParcelable("categoryObject")!!
-//        words = arguments?.getString("category_text").toString()
+        words = arguments?.getString("categoryMeals").toString()
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
         binding.categoryMealsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.categoryMealsRecyclerView.adapter = categoryMealsAdapter
@@ -39,24 +40,20 @@ class CategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val words = "Seafood"
         viewModel.categoryMealsByWords(words)
         viewModel.categoryMeals.observe(viewLifecycleOwner) { meals ->
             categoryMealsAdapter.setCategoryMeals(meals)
-            Log.d("CategoryFragment", "onViewCreated: $meals")
         }
-
     }
 
     companion object {
-        fun newInstance() = CategoryFragment()
-//        fun newInstance(categoryItem: CategoryItem): CategoryFragment {
-//            val args = Bundle().apply {
-//                putParcelable("categoryObject", categoryItem)
-//            }
-//            return CategoryFragment().apply {
-//                arguments = args
-//            }
-//        }
+        fun newInstance(words: String): CategoryFragment {
+            val args = Bundle().apply {
+                putString("categoryMeals", words)
+            }
+            return CategoryFragment().apply {
+                arguments = args
+            }
+        }
     }
 }

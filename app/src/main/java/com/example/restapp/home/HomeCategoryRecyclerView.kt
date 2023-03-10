@@ -15,6 +15,7 @@ import com.example.restapp.data.MealsCategory
 import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.HomeCategoryItemViewBinding
 import com.example.restapp.databinding.HomeImageItemViewBinding
+import com.example.restapp.word.WordFragment
 import java.util.Locale.Category
 
 class HomeCategoryRecyclerViewAdapter :
@@ -47,10 +48,8 @@ class HomeCategoryRecyclerViewAdapter :
             binding.homeCategoryItemText.text = category.category
             binding.homeCategoryItemText.setOnClickListener { v ->
                 binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#00B1E5")))
-                val bundle = Bundle()
-                bundle.putString("category_text", binding.homeCategoryItemText.toString())
-                val activity = v?.context
-                val categoryFragment = CategoryFragment.newInstance()
+                val activity = v!!.context
+                val categoryFragment = CategoryFragment.newInstance(binding.homeCategoryItemText.text.toString())
                 (activity as HomeActivity).supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.homeFragmentContainer, categoryFragment)
