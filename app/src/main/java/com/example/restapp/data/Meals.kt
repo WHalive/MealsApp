@@ -4,6 +4,16 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+
+@Parcelize
+data class CategoryMeals(@SerializedName("meals") val meals: List<CategoryMealsItem>) : Parcelable
+
+@Parcelize
+data class CategoryMealsItem(
+    @SerializedName("strMeal") val name: String,
+    @SerializedName("strMealThumb") val image: String
+) : Parcelable
+
 @Parcelize
 data class MealsCategory(@SerializedName("meals") val meals: List<CategoryItem>) : Parcelable
 

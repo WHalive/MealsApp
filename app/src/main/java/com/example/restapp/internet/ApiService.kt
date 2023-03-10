@@ -2,6 +2,7 @@ package com.example.restapp.internet
 
 import android.util.Log
 import com.example.restapp.BuildConfig
+import com.example.restapp.data.CategoryMeals
 import com.example.restapp.data.Meals
 import com.example.restapp.data.MealsCategory
 import okhttp3.OkHttpClient
@@ -27,6 +28,9 @@ interface MealsApiService {
 
     @GET("search.php")
     suspend fun getMealsByLetter(@Query("f") letter: String): Meals
+
+    @GET("filter.php")
+    suspend fun getCategoryMealsByWords(@Query("c")words: String): CategoryMeals
 
     @GET("list.php?c=list")
     suspend fun getMealsCategory(): MealsCategory

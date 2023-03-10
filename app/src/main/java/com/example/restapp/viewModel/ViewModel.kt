@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.restapp.data.CategoryItem
+import com.example.restapp.data.CategoryMealsItem
 import com.example.restapp.data.MealsItem
 import com.example.restapp.internet.MealsApi
 import com.example.restapp.list.ListFragment
@@ -22,7 +23,11 @@ class ViewModel : ViewModel() {
     val mealsName: LiveData<List<MealsItem>> = _mealsName
 
     private val _mealsCategory = MutableLiveData<List<CategoryItem>>()
-    val mealsCategory: LiveData<List<CategoryItem>> =_mealsCategory
+    val mealsCategory: LiveData<List<CategoryItem>> = _mealsCategory
+
+    private val _categoryMeals = MutableLiveData<List<CategoryMealsItem>>()
+    val categoryMeals: LiveData<List<CategoryMealsItem>> = _categoryMeals
+
     init {
         getAllMeals()
     }
@@ -46,6 +51,17 @@ class ViewModel : ViewModel() {
 
             } catch (e: Exception) {
                 Log.e("ViewModel", e.message.orEmpty())
+            }
+        }
+    }
+
+    fun categoryMealsByWords(words: String) {
+        viewModelScope.launch {
+            try {
+                _categoryMeals.value = MealsApi.retrofitService.getCategoryMealsByWords(words).meals
+
+            } catch (e: Exception) {
+                Log.e("viewModel", e.message.orEmpty())
             }
         }
     }

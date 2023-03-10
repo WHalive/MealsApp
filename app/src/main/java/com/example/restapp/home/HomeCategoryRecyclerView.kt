@@ -2,6 +2,7 @@ package com.example.restapp.home
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -43,12 +44,13 @@ class HomeCategoryRecyclerViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(category: CategoryItem) {
-            val text = category.category
-            binding.homeCategoryItemText.text = text
+            binding.homeCategoryItemText.text = category.category
             binding.homeCategoryItemText.setOnClickListener { v ->
                 binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#00B1E5")))
+                val bundle = Bundle()
+                bundle.putString("category_text", binding.homeCategoryItemText.toString())
                 val activity = v?.context
-                val categoryFragment = CategoryFragment.newInstance(category)
+                val categoryFragment = CategoryFragment.newInstance()
                 (activity as HomeActivity).supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.homeFragmentContainer, categoryFragment)
