@@ -40,7 +40,7 @@ class MealsFragment : Fragment() {
         binding.mealsName.text = mealsItem.name
         binding.mealsInstructionText.text = mealsItem.instruction
         binding.mealsAreaName.text = mealsItem.area
-        binding.mealsCategoryName.text = mealsItem.type
+        binding.mealsCategoryName.text = mealsItem.category
         binding.mealsImage.load(mealsItem.image)
 
         binding.ing1.text = mealsItem.ing1

@@ -10,8 +10,6 @@ import androidx.core.graphics.blue
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restapp.HomeActivity
 import com.example.restapp.R
-import com.example.restapp.data.CategoryItem
-import com.example.restapp.data.MealsCategory
 import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.HomeCategoryItemViewBinding
 import com.example.restapp.databinding.HomeImageItemViewBinding
@@ -21,9 +19,9 @@ import java.util.Locale.Category
 class HomeCategoryRecyclerViewAdapter :
     RecyclerView.Adapter<HomeCategoryRecyclerViewAdapter.CategoryViewHolder>() {
 
-    private val categoryItem: MutableList<CategoryItem> = mutableListOf()
+    private val categoryItem: MutableList<MealsItem> = mutableListOf()
 
-    fun setCategory(categories: List<CategoryItem>) {
+    fun setCategory(categories: List<MealsItem>) {
         this.categoryItem.clear()
         this.categoryItem.addAll(categories)
         notifyDataSetChanged()
@@ -44,7 +42,7 @@ class HomeCategoryRecyclerViewAdapter :
     inner class CategoryViewHolder(private var binding: HomeCategoryItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(category: CategoryItem) {
+        fun bind(category: MealsItem) {
             binding.homeCategoryItemText.text = category.category
             binding.homeCategoryItemText.setOnClickListener { v ->
                 binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#00B1E5")))

@@ -1,14 +1,18 @@
 package com.example.restapp.home
 
+import android.R
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restapp.databinding.FragmentHomeBinding
 import com.example.restapp.viewModel.ViewModel
+import com.google.firebase.installations.Utils
 
 
 class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
@@ -37,6 +41,7 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
         binding.homeCategoryRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.homeCategoryRecyclerView.adapter = categoryAdapter
+
 
         return binding.root
     }

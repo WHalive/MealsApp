@@ -9,10 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.restapp.R
-import com.example.restapp.data.CategoryItem
-import com.example.restapp.data.CategoryMeals
-import com.example.restapp.data.CategoryMealsItem
 import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.FragmentCategoryBinding
 import com.example.restapp.meals.MealsFragment
