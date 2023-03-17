@@ -1,5 +1,6 @@
 package com.example.restapp.home
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.restapp.HomeActivity
 import com.example.restapp.R
-import com.example.restapp.data.*
+import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.CategoryMealsItemBinding
 import com.example.restapp.meals.MealsFragment
+
 
 class CategoryMealsRecyclerViewAdapter :
     RecyclerView.Adapter<CategoryMealsRecyclerViewAdapter.CategoryMealsViewHolder>() {
@@ -30,6 +32,7 @@ class CategoryMealsRecyclerViewAdapter :
             binding.categoryMealsCardView.setOnClickListener { v ->
                 val activity = v?.context
                 val mealsFragment = MealsFragment.newInstance(categoryMeals)
+                Log.d("Category", "bind: $categoryMeals")
                 (activity as HomeActivity).supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, mealsFragment)

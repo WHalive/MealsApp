@@ -23,12 +23,13 @@ class MealsFragment : Fragment() {
 
     private lateinit var binding: FragmentMealsBinding
     private lateinit var mealsItem: MealsItem
+    private lateinit var name: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mealsItem = arguments?.getParcelable("mealObject")!!
+       mealsItem = arguments?.getParcelable("mealObject")!!
         binding = FragmentMealsBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -202,6 +203,18 @@ class MealsFragment : Fragment() {
         } else {
             binding.c20.visibility = View.VISIBLE
         }
+    }
+    companion object {
+        fun newInstance(mealsItem: MealsItem): MealsFragment {
+            val args = Bundle().apply {
+                putParcelable("mealObject", mealsItem)
+            }
+            return MealsFragment().apply {
+                arguments = args
+            }
+        }
+    }
+}
 
 //        binding.ing1.text = mealsItem.ing1
 //        binding.m1.text = mealsItem.m1
@@ -262,18 +275,3 @@ class MealsFragment : Fragment() {
 //
 //        binding.ing20.text = mealsItem.ing20
 //        binding.m20.text = mealsItem.m20
-
-
-    }
-
-    companion object {
-        fun newInstance(mealsItem: MealsItem): MealsFragment {
-            val args = Bundle().apply {
-                putParcelable("mealObject", mealsItem)
-            }
-            return MealsFragment().apply {
-                arguments = args
-            }
-        }
-    }
-}

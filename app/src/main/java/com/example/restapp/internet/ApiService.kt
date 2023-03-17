@@ -29,7 +29,7 @@ interface MealsApiService {
     @GET("filter.php")
     suspend fun getCategoryMealsByWords(@Query("c")words: String): Meals
 
-    @GET("list.php?c=list")
+    @GET("list.php?c")
     suspend fun getMealsCategory(): Meals
 }
 

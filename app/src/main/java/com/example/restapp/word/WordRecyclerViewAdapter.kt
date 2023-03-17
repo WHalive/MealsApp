@@ -16,6 +16,7 @@ import com.example.restapp.data.Meals
 import com.example.restapp.data.MealsItem
 import com.example.restapp.meals.MealsFragment
 
+
 class WordRecyclerViewAdapter : RecyclerView.Adapter<WordRecyclerViewAdapter.WordViewHolder>() {
 
     private val mealsName: MutableList<MealsItem> = mutableListOf()
@@ -33,6 +34,7 @@ class WordRecyclerViewAdapter : RecyclerView.Adapter<WordRecyclerViewAdapter.Wor
             button.text = mealsItem.name
             button.setOnClickListener { v ->
                 val activity = v?.context
+                Log.d("word", "bind: $mealsItem")
                 val mealFragment = MealsFragment.newInstance(mealsItem)
                 (activity as HomeActivity).supportFragmentManager
                     .beginTransaction()
