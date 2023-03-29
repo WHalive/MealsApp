@@ -11,6 +11,7 @@ import com.example.restapp.R
 import com.example.restapp.data.MealsItem
 import com.example.restapp.databinding.CategoryMealsItemBinding
 import com.example.restapp.meals.MealsFragment
+import com.example.restapp.word.WordFragment
 
 
 class CategoryMealsRecyclerViewAdapter :

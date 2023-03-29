@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.restapp.databinding.FragmentCategoryBinding
 import com.example.restapp.databinding.FragmentHomeBinding
 import com.example.restapp.viewModel.ViewModel
 import com.google.firebase.installations.Utils
@@ -20,7 +21,7 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: ViewModel by viewModels()
     private val imageAdapter by lazy { MealsImageAdapter(this) }
-    private val categoryAdapter by lazy { HomeCategoryRecyclerViewAdapter() }
+    private val categoryAdapter by lazy { HomeCategoryRecyclerViewAdapter(requireContext()) }
 
 //    val api_key =  "AIzaSyCLNsFm2XHl_jJ5mZDwySEM-gyMl36XAcQ"
 //    it is for youtube videos
@@ -42,7 +43,6 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.homeCategoryRecyclerView.adapter = categoryAdapter
 
-
         return binding.root
     }
 
@@ -58,7 +58,6 @@ class HomeFragment : Fragment(), MealsImageAdapter.RecyclerViewEvent {
             imageAdapter.setMeals(meals)
             viewModel.mealsCategory.observe(viewLifecycleOwner) { categories ->
                 categoryAdapter.setCategory(categories)
-
             }
 //            autoScroll()
 //            Log.d("TAG", "onViewCreated: $meals")
