@@ -31,7 +31,7 @@ class HomeCategoryRecyclerViewAdapter(private val ctx: Context) :
         this.categoryItem.addAll(categories)
         notifyDataSetChanged()
     }
-
+    private var selectedItemPosition: Int = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(HomeCategoryItemViewBinding.inflate(LayoutInflater.from(parent.context)))
     }
@@ -49,10 +49,15 @@ class HomeCategoryRecyclerViewAdapter(private val ctx: Context) :
         fun bind(category: MealsItem) {
             binding.homeCategoryItemText.text = category.category
             openCategoryFragment(ctx, "beef")
-            binding.categoryCardView.setOnClickListener {
-//                binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#00B1E5")))
+            binding.homeCategoryItemText.setOnClickListener {
+                selectedItemPosition = position
+                notifyDataSetChanged()
                 openCategoryFragment(ctx, binding.homeCategoryItemText.text.toString())
             }
+            if(selectedItemPosition == position)
+                binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#00B1E5")))
+            else
+                binding.categoryCardView.setStrokeColor(ColorStateList.valueOf(Color.parseColor("#FFFFFFFF")))
         }
     }
     private fun openCategoryFragment(ctx: Context, words: String) {
