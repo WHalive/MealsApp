@@ -1,9 +1,14 @@
 package com.example.restapp
 
+import android.app.ProgressDialog.show
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.restapp.databinding.ActivityHomeBinding
@@ -12,11 +17,13 @@ import com.example.restapp.word.WordFragment
 import com.example.restapp.list.ListFragment
 import com.example.restapp.meals.MealsFragment
 import com.example.restapp.networkWarning.NetworkConnection
+import com.google.android.material.snackbar.Snackbar
 
 class HomeActivity : AppCompatActivity() {
     private var _binding: ActivityHomeBinding? = null
     private val binding get() = _binding!!
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -26,11 +33,14 @@ class HomeActivity : AppCompatActivity() {
         val networkConnection = NetworkConnection(applicationContext)
         networkConnection.observe(this){
             if(it){
-                inflateLayout.visibility = View.GONE
+             inflateLayout.visibility = View.GONE
+
 //                Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
             }else {
                 inflateLayout.visibility = View.VISIBLE
-                Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show()
+            Snackbar.make(requireViewById(R.id.networkError), "Please, Check Internet Connection!", Snackbar.LENGTH_SHORT)
+                .show()
             }
         }
         val homeFragment = HomeFragment.newInstance()
