@@ -2,6 +2,8 @@ package com.example.restapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.restapp.databinding.ActivityHomeBinding
@@ -9,6 +11,7 @@ import com.example.restapp.home.HomeFragment
 import com.example.restapp.word.WordFragment
 import com.example.restapp.list.ListFragment
 import com.example.restapp.meals.MealsFragment
+import com.example.restapp.networkWarning.NetworkConnection
 
 class HomeActivity : AppCompatActivity() {
     private var _binding: ActivityHomeBinding? = null
@@ -19,6 +22,17 @@ class HomeActivity : AppCompatActivity() {
         _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val inflateLayout =findViewById<View>(R.id.networkError)
+        val networkConnection = NetworkConnection(applicationContext)
+        networkConnection.observe(this){
+            if(it){
+                inflateLayout.visibility = View.GONE
+//                Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
+            }else {
+                inflateLayout.visibility = View.VISIBLE
+                Toast.makeText(this, "Not Connected", Toast.LENGTH_SHORT).show()
+            }
+        }
         val homeFragment = HomeFragment.newInstance()
         val favouriteFragment = FavouriteFragment()
         val searchFragment = SearchFragment()

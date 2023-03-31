@@ -68,4 +68,6 @@
     <string name="starter">Starter</string>
     <string name="vegan">Vegan</string>
     <string name="vegetarian">Vegetarian</string>
+    <string name="please_check_internet_connection">Please Check Internet Connection</string>
+    <string name="retry">Retry</string>
 </resources>
